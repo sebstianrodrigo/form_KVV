@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        *{
+            background-color: greenyellow;
+        }
+        h1{
+            font-size: 80px;
+            text-decoration: underline;
+            text-align: center;
+        }
+        #formulario{
+            text-align: left;
+            margin-left: 150px;
+        }
+        button{
+            align-items: center;
+            background-color: orange;
+            padding: 20px;
+            font-size: 50px;
+        }
+        input{
+            background-color: white;
+            padding: 20px;
+            font-size: 50px;
+            
+        }
+      /* CSS para centrar el formulario en la página */
+      .form-container {
+        font-size: 50px;
+        display: flex;
+        align-items: center;
+        height: 100vh; /* ocupa todo el alto de la pantalla */
+      }
+      
+      /* CSS para hacer el formulario responsive */
+      form {
+        max-width: 400px; /* anchura máxima */
+        margin: 0 auto; /* centra el formulario horizontalmente */
+        padding: -100px; /* espaciado interno */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+        <form id="formulario">
+        <h1>Formulario</h1>
+          <label>CLIENTE:</label><br>
+          <input type="text" id="CLIENTE"><br><br>
+          <label>OBRA:</label><br>
+          <input type="text" id="OBRA"><br><br>
+          <label>DIRECCIÓN:</label><br>
+          <input type="text" id="DIRECCIÓN"><br><br>
+          <label>CORREO:</label><br>
+          <input type="email" id="CORREO"><br><br>
+          <label>CONTACTO:</label><br>
+          <input type="tel" id="CONTACTO"><br><br>
+          <button type="button" onclick="exportPDF()">Exportar a PDF</button>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script>
+        function exportPDF() {
+           var doc = new jsPDF();
+           var CLIENTE = document.getElementById("CLIENTE").value;
+           var OBRA = document.getElementById("OBRA").value;
+           var DIRECCIÓN = document.getElementById("DIRECCIÓN").value;
+           var CORREO = document.getElementById("CORREO").value;
+           var CONTACTO = document.getElementById("CONTACTO").value;
+     
+           doc.text(20, 20, "CLIENTE: " + CLIENTE);
+           doc.text(20, 30, "OBRA: " + OBRA);
+           doc.text(20, 40, "DIRECCIÓN: " + DIRECCIÓN);
+           doc.text(20, 50, "CORREO: " + CORREO);
+           doc.text(20, 60, "CONTACTO: " + CONTACTO);
+           doc.save('formulario.pdf');
+        }
+     </script>
+  </body>
+</html>
